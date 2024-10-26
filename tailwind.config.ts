@@ -8,9 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif']
+      },
       colors: {
-        background: "var(--background)",
         foreground: "var(--foreground)",
+        primaryLight: '#2B50AA',
+        primary: '#213C83',
+        primaryDark: '#142652',
+        primaryLighter: '#7C98DF'
       },
     },
   },
