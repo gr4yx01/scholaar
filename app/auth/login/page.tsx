@@ -1,7 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 import React from 'react'
 
 const Login = () => {
+
+  const handleSubmit = async () => {
+    console.log('Submitted')
+  }
+
   return (
     <div className='flex h-[60vh] flex-col w-full justify-center items-center'>
     <main className=' text-primary shadow-md rounded-lg p-8 border'>
@@ -12,7 +19,7 @@ const Login = () => {
           <input type='email' id='email' placeholder='example@gmail.com' className='text-black w-full p-2 border border-primary rounded-md' />
         </div>
         <div className='flex justify-center items-center'>
-          <button className='bg-primary text-white p-3 px-5 rounded-md font-roboto font-medium'>Login</button>
+          <button onClick={handleSubmit} className='bg-primary text-white p-3 px-5 rounded-md font-roboto font-medium'>Login</button>
         </div>
       </form>
     </main>

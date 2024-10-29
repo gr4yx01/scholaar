@@ -6,8 +6,8 @@ import majors from '@/data/major.json'
 import axios from 'axios'
 import { useScholarship } from '@/stores/scholarship'
 import { useRouter } from 'next/navigation'
-import ClipLoader from "react-spinners/ClipLoader";
 import { DotLoader } from 'react-spinners'
+import { useCookies } from 'react-cookie'
 
 const override: CSSProperties = {
   display: "block",
@@ -20,13 +20,18 @@ const Scholarship = () => {
     const [countries, setCountries] = useState<any>([])
     const setScholarships = useScholarship((state) => state.setScholarships)
     const [term, setTerm] = useState('')
+    const [cookie,_, removeCookie] = useCookies(['token'])
     const [query, setQuery] = useState({
         major: '',
         country: ''
     })
+
     const router = useRouter()
 
     useEffect(() => {
+        if(!cookie?.token) {
+            router.push('/auth/login')
+        }
         const getCountries = async () => {
             const countries = await axios.get('http://localhost:4000/countries')
             setCountries(countries?.data)

@@ -1,7 +1,22 @@
+'use client'
+
 import Image from "next/image";
 import Header from "./components/Header";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const [cookie] = useCookies(['token'])
+  const router = useRouter()
+
+  const handleSubmit = () => {
+    if(cookie?.token) {
+      router.push('/scholarship/apply')
+    } else {
+      router.push('/auth/login')
+    }
+  }
+
   return (
       <section className="w-full flex h-[70vh] justify-center items-center space-x-16">
         <div className="gap-4">
@@ -11,7 +26,7 @@ export default function Home() {
             <span className="text-gray-500">Find a scholarship or loan to support your international education.</span>
           </div>
           <div className="flex w-full justify-center pt-5">
-            <button className='bg-primaryLight text-white p-2 flex justify-center items-center font-jakarta font-medium rounded-md px-4'>Find Scholarships</button>
+            <button onClick={handleSubmit} className='bg-primaryLight text-white p-2 flex justify-center items-center font-jakarta font-medium rounded-md px-4'>Find Scholarships</button>
           </div>
         </div>
       </section>
