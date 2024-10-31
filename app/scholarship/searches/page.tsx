@@ -6,7 +6,7 @@ import React from 'react'
 
 const Scholarships = () => {
   const scholarships = useScholarship((state) => state.scholarships)
-  console.log(scholarships)
+  
 
   return (
     <div className='flex justify-center items-center p-5 flex-col'>

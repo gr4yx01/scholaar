@@ -11,7 +11,7 @@ const Stepper = ({ currentStep }: { currentStep: number }) => {
         {
             steps.map((step, index) => (
                 <>
-                    <button key={index} onClick={() => setStep(index + 1)} className={`w-10 h-10 flex justify-center items-center rounded-full border ${step == currentStep ? "bg-primary text-white" : ""}`}>
+                    <button key={step} onClick={() => setStep(index + 1)} className={`w-10 h-10 flex justify-center items-center rounded-full border ${step == currentStep ? "bg-primary text-white" : ""}`}>
                         <span className='font-roboto font-bold'>{step}</span>
                     </button>
                     {  

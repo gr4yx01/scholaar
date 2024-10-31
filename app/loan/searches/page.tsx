@@ -18,8 +18,6 @@ const Searches = () => {
         getLoans()
     }, [])
 
-    console.log(loans)
-
   return (
     <div className='flex w-full justify-center items-center'>
       <main className='p-10'>
@@ -32,7 +30,7 @@ const Searches = () => {
         <div className='my-5 grid grid-cols-2 gap-5'>
             {
                 loans?.data?.length > 0 && loans?.data?.map((loan: any) => (
-                    <LoanCard item={loan} />
+                    <LoanCard item={loan} key={loan?.id}/>
                 ))
             }
 

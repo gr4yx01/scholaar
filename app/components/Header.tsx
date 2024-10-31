@@ -1,16 +1,21 @@
 'use client'
 
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 
 const Header = () => {
   const [cookie,_, removeCookie] = useCookies(['token'])
+  const router = useRouter()
 
   const handleLogout = async () => {
-    console.log('yowa')
-    removeCookie('token')
+    removeCookie('token', { path: '/'})
   }
+
+    if(cookie?.token == undefined) {
+      router.replace('/')
+    }
 
   return (
     <div className=''>

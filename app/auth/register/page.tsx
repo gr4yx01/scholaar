@@ -30,7 +30,7 @@ const Register = () => {
       setLoading(true)
         const response = await axios.post('http://localhost:4000/auth/register', info)
         // console.log(response)
-        setCookie('token', response?.data?.data)
+        setCookie('token', response?.data?.data, { path: '/' })
         toast.success('Registration successful', {
           position: "top-right",
           autoClose: 3000,

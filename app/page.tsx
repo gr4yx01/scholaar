@@ -23,7 +23,7 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center font-roboto gap-2">
             <span className="font-semibold text-5xl">Financial Aid and Scholarship</span>
             <span className="text-primary text-3xl font-semibold">For International Students</span>
-            <span className="text-gray-500">Find a scholarship or loan to support your international education.</span>
+            <span className="text-gray-500">Find a scholarship or loan tosupport your international education.</span>
           </div>
           <div className="flex w-full justify-center pt-5">
             <button onClick={handleSubmit} className='bg-primaryLight text-white p-2 flex justify-center items-center font-jakarta font-medium rounded-md px-4'>Find Scholarships</button>

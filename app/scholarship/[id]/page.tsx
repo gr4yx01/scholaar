@@ -1,14 +1,13 @@
 'use client'
 
 import axios from 'axios'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 const Detail = () => {
     const { id } = useParams()
     const [scholarship, setScholarship] = useState<any>()
 
-    console.log(id)
     useEffect(() => {
       const getScholarshipDetail = async () => {
         const scholarship = await axios.get(`http://localhost:4000/scholarships/${id}`)
@@ -17,8 +16,6 @@ const Detail = () => {
 
       getScholarshipDetail()
     }, [])
-
-    console.log('***', scholarship)
 
   return (
     <div className='flex h-screen mt-36 justify-center items-center flex-col space-y-4'>

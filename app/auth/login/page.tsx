@@ -1,12 +1,42 @@
 'use client'
 
+import axios from 'axios'
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
+import { useCookies } from 'react-cookie'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Login = () => {
+  const [email, setEmail] = useState('')
+  const [_, setCookie] = useCookies(['token'])
+  const router = useRouter()
 
-  const handleSubmit = async () => {
-    console.log('Submitted')
+  const handleSubmit = async (e: any) => {
+    e.preventDefault()
+    try {
+      const response = await axios.post('http://localhost:4000/auth/login', {
+        body: JSON.stringify({ email })
+      })
+      toast.success('Login successful', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+      })
+      setCookie('token', response?.data?.data, { path: '/' })
+      router.push('/')
+
+    } catch (err: any) {
+      toast.error(err?.response?.data?.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+      })
+    }
   }
 
   return (
@@ -16,7 +46,7 @@ const Login = () => {
       <form className='space-y-5'>
         <div className='space-y-2'>
           <label htmlFor='email' className='font-roboto font-medium'>Email</label>
-          <input type='email' id='email' placeholder='example@gmail.com' className='text-black w-full p-2 border border-primary rounded-md' />
+          <input type='email' id='email' onChange={(e) => setEmail(e.target.value)} placeholder='example@gmail.com' className='text-black w-full p-2 border border-primary rounded-md' />
         </div>
         <div className='flex justify-center items-center'>
           <button onClick={handleSubmit} className='bg-primary text-white p-3 px-5 rounded-md font-roboto font-medium'>Login</button>
@@ -27,6 +57,7 @@ const Login = () => {
         <span className='font-medium text-sm'>Don't have an account?</span>
         <Link href='/auth/register' className='text-primary font-semibold'>Sign up</Link>
     </div>
+    <ToastContainer />
   </div>
   )
 }

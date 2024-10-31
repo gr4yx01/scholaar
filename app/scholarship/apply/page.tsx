@@ -25,13 +25,8 @@ const Scholarship = () => {
         major: '',
         country: ''
     })
-
-    const router = useRouter()
-
+    
     useEffect(() => {
-        if(!cookie?.token) {
-            router.push('/auth/login')
-        }
         const getCountries = async () => {
             const countries = await axios.get('http://localhost:4000/countries')
             setCountries(countries?.data)
@@ -56,7 +51,6 @@ const Scholarship = () => {
             setScholarships(data?.data)
         }
         setLoading(false)
-        router.push('/scholarship/searches')
     }
 
 
@@ -101,7 +95,7 @@ const Scholarship = () => {
                       <option>Select an option</option>
                       {
                         countries?.data?.map((country: any) => (
-                            <option value={country?.name}>{country?.name}</option>
+                            <option key={country?.id} value={country?.name}>{country?.name}</option>
                         ))
                       }
                     </select>

@@ -28,11 +28,11 @@ const LoanThree = () => {
     <>
       <span className='font-roboto font-semibold text-lg'>Choose a state?</span>
             <div className="relative w-full">
-              <select onChange={handleChange} className="w-full p-3 pr-10 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-700 appearance-none">
+              <select defaultValue={selection?.state} onChange={handleChange} className="w-full p-3 pr-10 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-700 appearance-none">
                 <option>Select an option</option>
                 {
                   states?.data?.map((state: any) => (
-                    <option selected={selection?.state === state.id} key={state.id} value={state.id}>{state.name}</option>
+                    <option key={state.id} value={state.id}>{state.name}</option>
                   ))
                 }
               </select>
